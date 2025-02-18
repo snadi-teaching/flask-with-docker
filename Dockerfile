@@ -1,8 +1,4 @@
-FROM alpine:latest
-
-RUN apk update
-RUN apk add --no-cache python3-dev 
-RUN apk add py-pip
+FROM python:3.10-alpine
 
 COPY . .
 

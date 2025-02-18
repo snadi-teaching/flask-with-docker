@@ -2,23 +2,45 @@
 
 This is a simple flask application with a docker file.
 
-## Running the application
-
-### Running using Docker
+## Pre-requisites
 
 You will need to have [Docker](https://docs.docker.com/engine/install/) installed.
 
-Once you have docker installed, simply run 
+## Running the application
 
-`docker compose up` and then go to [http://0.0.0.0:6969](http://0.0.0.0:6969) to see the running web application (if you see nothing on your browser, try [http:/127.0.0.1:6969](http:/127.0.0.1:6969))
+### Running the container using docker commands
 
-If you want to run it in the background (i.e., you can close the terminal but the site will still be up):
+1. Let's first try building the image `docker build -t flaskdocker .` -- this builds an image called flaskdocker
 
-`docker compose up -d`
+2. Run `docker images`. You should see the flaskdocker image you just built listed
 
-To shut down the web application, run:
+3. Let's run the container `docker run -d --name flaskdocker-container flaskdocker` This runs the image we created in step 1 in a container called flaskdocker-container. Note that the -d flag runs the container in the background.
 
-`docker compose down` (or simply ctrl-c if you are running from the terminal, but not in the background)
+4. Run `docker container ls` to see the running image.
+
+5. Go to [http://127.0.0.1:6969](http://127.0.0.1:6969) or []. You will find that the application is still not running. Why is that? The application is running on port 6969 on the *docker container*, not on the host machine. We want to map the port in the docker container to some port on the host machine so let's do the following:
+    a. Stop the container `docker stop flaskdocker-container`
+    b. Remove the container `docker rm flaskdocker-container`
+    b. re-run the container but while mapping the ports  `docker run -d --name flaskdocker-container -p 6969:6969 flaskdocker`
+
+Now go to [http://127.0.0.1:6969](http://127.0.0.1:6969) and you should see the application!
+
+
+### Running the container using docker compose
+
+Great, but the following series of commands is a bit tedious. Instead, we can create a single `docker-compose.yml` file that describes all the containers we need to build. Running `docker compose up` will trigger building the necessary images and containers and you can even do the port mapping inside the same file.
+
+Let's first stop and remove the container we already have running:  
+
+    -  `docker stop flaskdocker-container`
+    - `docker rm flaskdocker-container`
+
+And then we can simply call `docker compose up -d` (the -d runs it in the background)
+
+Go to [http://127.0.0.1:6969](http://127.0.0.1:6969) and verify that the application is running.
+
+You can stop the container by running `docker compose down`
+
 
 ### Running without docker
 

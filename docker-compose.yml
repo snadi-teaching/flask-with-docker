@@ -1,7 +1,7 @@
 version: '3'
 services:
     website:
-        container_name: flask-website
+        container_name: flaskdocker-container
         build: ./
         ports:
             - "6969:6969"
