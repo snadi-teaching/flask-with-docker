@@ -11,7 +11,7 @@ This is a simple flask application with a docker file.
 
 ### Prior Knowledge:
 - Concepts of CI/CD and DevOps
-- Containerization via Docker
+- Basic knowledge of Docker usage and containerization
 
 ### Time Estimate: 8-10 minutes
 
