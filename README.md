@@ -1,8 +1,22 @@
-# sample-flask-app
+# Using Flask with Docker
+
+## Overview
 
 This is a simple flask application with a docker file.
 
-## Pre-requisites
+### Learning Objectives
+- Practice deploying containerized applications
+- Understand how to map ports from the Docker container to the host machine
+- Use Docker Compose to simplify management of containers
+
+### Prior Knowledge:
+- Concepts of CI/CD and DevOps
+- Basic knowledge of Docker usage and containerization
+
+### Time Estimate: 8-10 minutes
+
+
+## Prerequisites
 
 You will need to have [Docker](https://docs.docker.com/engine/install/) installed.
 
